@@ -1,0 +1,476 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C105B8091827571D003EBF2B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C105B8081827571D003EBF2B /* Foundation.framework */; };
+		C105B80B1827571D003EBF2B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C105B80A1827571D003EBF2B /* CoreGraphics.framework */; };
+		C105B80D1827571D003EBF2B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C105B80C1827571D003EBF2B /* UIKit.framework */; };
+		C105B8131827571D003EBF2B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C105B8111827571D003EBF2B /* InfoPlist.strings */; };
+		C105B8151827571D003EBF2B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C105B8141827571D003EBF2B /* main.m */; };
+		C105B8191827571D003EBF2B /* MCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C105B8181827571D003EBF2B /* MCAppDelegate.m */; };
+		C105B81C1827571D003EBF2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C105B81A1827571D003EBF2B /* Main.storyboard */; };
+		C105B81F1827571D003EBF2B /* MCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C105B81E1827571D003EBF2B /* MCViewController.m */; };
+		C105B8211827571D003EBF2B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C105B8201827571D003EBF2B /* Images.xcassets */; };
+		C105B8281827571D003EBF2B /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C105B8271827571D003EBF2B /* XCTest.framework */; };
+		C105B8291827571D003EBF2B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C105B8081827571D003EBF2B /* Foundation.framework */; };
+		C105B82A1827571D003EBF2B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C105B80C1827571D003EBF2B /* UIKit.framework */; };
+		C105B8321827571D003EBF2B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C105B8301827571D003EBF2B /* InfoPlist.strings */; };
+		C105B8341827571D003EBF2B /* MCOptionPricerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C105B8331827571D003EBF2B /* MCOptionPricerTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C105B82B1827571D003EBF2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C105B7FD1827571D003EBF2B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C105B8041827571D003EBF2B;
+			remoteInfo = MCOptionPricer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C105B8051827571D003EBF2B /* MCOptionPricer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MCOptionPricer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C105B8081827571D003EBF2B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C105B80A1827571D003EBF2B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C105B80C1827571D003EBF2B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C105B8101827571D003EBF2B /* MCOptionPricer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MCOptionPricer-Info.plist"; sourceTree = "<group>"; };
+		C105B8121827571D003EBF2B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C105B8141827571D003EBF2B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C105B8161827571D003EBF2B /* MCOptionPricer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MCOptionPricer-Prefix.pch"; sourceTree = "<group>"; };
+		C105B8171827571D003EBF2B /* MCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCAppDelegate.h; sourceTree = "<group>"; };
+		C105B8181827571D003EBF2B /* MCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCAppDelegate.m; sourceTree = "<group>"; };
+		C105B81B1827571D003EBF2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C105B81D1827571D003EBF2B /* MCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MCViewController.h; sourceTree = "<group>"; };
+		C105B81E1827571D003EBF2B /* MCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCViewController.m; sourceTree = "<group>"; };
+		C105B8201827571D003EBF2B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C105B8261827571D003EBF2B /* MCOptionPricerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MCOptionPricerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C105B8271827571D003EBF2B /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		C105B82F1827571D003EBF2B /* MCOptionPricerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MCOptionPricerTests-Info.plist"; sourceTree = "<group>"; };
+		C105B8311827571D003EBF2B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C105B8331827571D003EBF2B /* MCOptionPricerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCOptionPricerTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C105B8021827571D003EBF2B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C105B80B1827571D003EBF2B /* CoreGraphics.framework in Frameworks */,
+				C105B80D1827571D003EBF2B /* UIKit.framework in Frameworks */,
+				C105B8091827571D003EBF2B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C105B8231827571D003EBF2B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C105B8281827571D003EBF2B /* XCTest.framework in Frameworks */,
+				C105B82A1827571D003EBF2B /* UIKit.framework in Frameworks */,
+				C105B8291827571D003EBF2B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C105B7FC1827571D003EBF2B = {
+			isa = PBXGroup;
+			children = (
+				C105B80E1827571D003EBF2B /* MCOptionPricer */,
+				C105B82D1827571D003EBF2B /* MCOptionPricerTests */,
+				C105B8071827571D003EBF2B /* Frameworks */,
+				C105B8061827571D003EBF2B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C105B8061827571D003EBF2B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C105B8051827571D003EBF2B /* MCOptionPricer.app */,
+				C105B8261827571D003EBF2B /* MCOptionPricerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C105B8071827571D003EBF2B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C105B8081827571D003EBF2B /* Foundation.framework */,
+				C105B80A1827571D003EBF2B /* CoreGraphics.framework */,
+				C105B80C1827571D003EBF2B /* UIKit.framework */,
+				C105B8271827571D003EBF2B /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C105B80E1827571D003EBF2B /* MCOptionPricer */ = {
+			isa = PBXGroup;
+			children = (
+				C105B8171827571D003EBF2B /* MCAppDelegate.h */,
+				C105B8181827571D003EBF2B /* MCAppDelegate.m */,
+				C105B81A1827571D003EBF2B /* Main.storyboard */,
+				C105B81D1827571D003EBF2B /* MCViewController.h */,
+				C105B81E1827571D003EBF2B /* MCViewController.m */,
+				C105B8201827571D003EBF2B /* Images.xcassets */,
+				C105B80F1827571D003EBF2B /* Supporting Files */,
+			);
+			path = MCOptionPricer;
+			sourceTree = "<group>";
+		};
+		C105B80F1827571D003EBF2B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C105B8101827571D003EBF2B /* MCOptionPricer-Info.plist */,
+				C105B8111827571D003EBF2B /* InfoPlist.strings */,
+				C105B8141827571D003EBF2B /* main.m */,
+				C105B8161827571D003EBF2B /* MCOptionPricer-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C105B82D1827571D003EBF2B /* MCOptionPricerTests */ = {
+			isa = PBXGroup;
+			children = (
+				C105B8331827571D003EBF2B /* MCOptionPricerTests.m */,
+				C105B82E1827571D003EBF2B /* Supporting Files */,
+			);
+			path = MCOptionPricerTests;
+			sourceTree = "<group>";
+		};
+		C105B82E1827571D003EBF2B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C105B82F1827571D003EBF2B /* MCOptionPricerTests-Info.plist */,
+				C105B8301827571D003EBF2B /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C105B8041827571D003EBF2B /* MCOptionPricer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C105B8371827571D003EBF2B /* Build configuration list for PBXNativeTarget "MCOptionPricer" */;
+			buildPhases = (
+				C105B8011827571D003EBF2B /* Sources */,
+				C105B8021827571D003EBF2B /* Frameworks */,
+				C105B8031827571D003EBF2B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MCOptionPricer;
+			productName = MCOptionPricer;
+			productReference = C105B8051827571D003EBF2B /* MCOptionPricer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C105B8251827571D003EBF2B /* MCOptionPricerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C105B83A1827571D003EBF2B /* Build configuration list for PBXNativeTarget "MCOptionPricerTests" */;
+			buildPhases = (
+				C105B8221827571D003EBF2B /* Sources */,
+				C105B8231827571D003EBF2B /* Frameworks */,
+				C105B8241827571D003EBF2B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C105B82C1827571D003EBF2B /* PBXTargetDependency */,
+			);
+			name = MCOptionPricerTests;
+			productName = MCOptionPricerTests;
+			productReference = C105B8261827571D003EBF2B /* MCOptionPricerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C105B7FD1827571D003EBF2B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MC;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Joe Loftus";
+				TargetAttributes = {
+					C105B8251827571D003EBF2B = {
+						TestTargetID = C105B8041827571D003EBF2B;
+					};
+				};
+			};
+			buildConfigurationList = C105B8001827571D003EBF2B /* Build configuration list for PBXProject "MCOptionPricer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C105B7FC1827571D003EBF2B;
+			productRefGroup = C105B8061827571D003EBF2B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C105B8041827571D003EBF2B /* MCOptionPricer */,
+				C105B8251827571D003EBF2B /* MCOptionPricerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C105B8031827571D003EBF2B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C105B8211827571D003EBF2B /* Images.xcassets in Resources */,
+				C105B8131827571D003EBF2B /* InfoPlist.strings in Resources */,
+				C105B81C1827571D003EBF2B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C105B8241827571D003EBF2B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C105B8321827571D003EBF2B /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C105B8011827571D003EBF2B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C105B8191827571D003EBF2B /* MCAppDelegate.m in Sources */,
+				C105B81F1827571D003EBF2B /* MCViewController.m in Sources */,
+				C105B8151827571D003EBF2B /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C105B8221827571D003EBF2B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C105B8341827571D003EBF2B /* MCOptionPricerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C105B82C1827571D003EBF2B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C105B8041827571D003EBF2B /* MCOptionPricer */;
+			targetProxy = C105B82B1827571D003EBF2B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C105B8111827571D003EBF2B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C105B8121827571D003EBF2B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C105B81A1827571D003EBF2B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C105B81B1827571D003EBF2B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C105B8301827571D003EBF2B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C105B8311827571D003EBF2B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C105B8351827571D003EBF2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C105B8361827571D003EBF2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C105B8381827571D003EBF2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MCOptionPricer/MCOptionPricer-Prefix.pch";
+				INFOPLIST_FILE = "MCOptionPricer/MCOptionPricer-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C105B8391827571D003EBF2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MCOptionPricer/MCOptionPricer-Prefix.pch";
+				INFOPLIST_FILE = "MCOptionPricer/MCOptionPricer-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C105B83B1827571D003EBF2B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MCOptionPricer.app/MCOptionPricer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MCOptionPricer/MCOptionPricer-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "MCOptionPricerTests/MCOptionPricerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		C105B83C1827571D003EBF2B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MCOptionPricer.app/MCOptionPricer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MCOptionPricer/MCOptionPricer-Prefix.pch";
+				INFOPLIST_FILE = "MCOptionPricerTests/MCOptionPricerTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C105B8001827571D003EBF2B /* Build configuration list for PBXProject "MCOptionPricer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C105B8351827571D003EBF2B /* Debug */,
+				C105B8361827571D003EBF2B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C105B8371827571D003EBF2B /* Build configuration list for PBXNativeTarget "MCOptionPricer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C105B8381827571D003EBF2B /* Debug */,
+				C105B8391827571D003EBF2B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C105B83A1827571D003EBF2B /* Build configuration list for PBXNativeTarget "MCOptionPricerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C105B83B1827571D003EBF2B /* Debug */,
+				C105B83C1827571D003EBF2B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C105B7FD1827571D003EBF2B /* Project object */;
+}
