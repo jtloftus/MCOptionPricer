@@ -10,7 +10,11 @@
 
 @interface MCViewController ()
 
+@property (weak, nonatomic) IBOutlet UITextField *tickerTextField;
+@property (weak, nonatomic) IBOutlet UILabel *invalidTickerLabel;
 @property (strong, nonatomic) APYahooDataPuller *dataPuller;
+@property (strong, nonatomic) NSString *tickerString;
+@property (strong, nonatomic) NSString *spotPrice;
 
 @end
 
@@ -26,20 +30,29 @@
     NSDate *end           = [NSDate date];
     self.dataPuller = [[APYahooDataPuller alloc] initWithTargetSymbol:@"AAPL" targetStartDate:start targetEndDate:end];
     
+    [self.invalidTickerLabel setText:@""];
 }
 
 
 - (IBAction)printData:(id)sender {
     //NSLog(@"%@", [self.dataPuller.financialData[0] objectForKey:@"close"]);
     //NSLog(@"%@", self.dataPuller.financialData);
-    
-    NSLog(@"%@",[self fetchQuotesFor:@[@"AAPL", @"hello"]]);
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    if ([self containsNonWhitespaceCharacters:self.tickerTextField.text]) {
+        // Trim the leading and trailing whitespace from the comment
+        NSString *trimmedTicker = [self.tickerTextField.text stringByTrimmingCharactersInSet:
+                                    [NSCharacterSet whitespaceCharacterSet]];
+        NSLog(@"Trimmed Ticker: %@", trimmedTicker);
+        if (![self isValidTicker:trimmedTicker]) {
+            [self.invalidTickerLabel setText:@"That's not a valid Ticker!"];
+        }
+        else {
+            self.tickerString = trimmedTicker;
+            [self performSegueWithIdentifier:@"inputOption" sender:self];
+        }
+    }
+    else {
+        [self.invalidTickerLabel setText:@"Please enter a ticker."];
+    }
 }
 
 #define QUOTE_QUERY_PREFIX @"http://query.yahooapis.com/v1/public/yql?q=select%20symbol%2C%20BidRealtime%20from%20yahoo.finance.quotes%20where%20symbol%20in%20("
@@ -64,12 +77,46 @@
         if (error) NSLog(@"[%@ %@] JSON error: %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), error.localizedDescription);
         NSLog(@"[%@ %@] received %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), results);
         NSArray *quoteEntries = [results valueForKeyPath:@"query.results.quote"];
-        quotes = [[NSMutableDictionary alloc] initWithCapacity:[quoteEntries count]];
+        quotes = [[NSMutableDictionary alloc] initWithCapacity:[tickers count]];
         for (NSDictionary *quoteEntry in quoteEntries) {
             [quotes setValue:[quoteEntry valueForKey:@"BidRealtime"] forKey:[quoteEntry valueForKey:@"symbol"]];
         }
     }
     return quotes;
+}
+
+- (BOOL)isValidTicker:(NSString *)ticker
+{
+    NSArray *tickers = @[ticker, @"dummy"];
+    NSDictionary *quotes = [self fetchQuotesFor:tickers];
+    if ([quotes valueForKey:[ticker uppercaseString]] != [NSNull null]) {
+        self.spotPrice = [quotes valueForKey:[ticker uppercaseString]];
+        return YES;
+    }
+    return NO;
+}
+    
+// Checks if a string contains any non whitespace characters
+- (BOOL)containsNonWhitespaceCharacters:(NSString *)string
+{
+    NSCharacterSet *set = [NSCharacterSet whitespaceCharacterSet];
+    return ([[string stringByTrimmingCharactersInSet: set] length] != 0);
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([[segue identifier] isEqualToString:@"inputOption"]) {
+        OptionPickerVC *opvc = (OptionPickerVC *)[segue destinationViewController];
+        opvc.ticker = [self.tickerString uppercaseString];
+        opvc.spotPrice = self.spotPrice;
+    }
+}
+
+- (IBAction)done:(UIStoryboardSegue *)segue
+{
+    // Done is our "cancel" unwind segue.
+    // Whenever we want the user to return to the map without any actions,
+    // This is the unwind segue we call
 }
 
 @end
