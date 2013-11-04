@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "APYahooDataPuller.h"
 
 @interface MCViewController : UIViewController
 

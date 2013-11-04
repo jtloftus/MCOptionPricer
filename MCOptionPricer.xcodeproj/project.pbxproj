@@ -21,6 +21,9 @@
 		C105B82A1827571D003EBF2B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C105B80C1827571D003EBF2B /* UIKit.framework */; };
 		C105B8321827571D003EBF2B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C105B8301827571D003EBF2B /* InfoPlist.strings */; };
 		C105B8341827571D003EBF2B /* MCOptionPricerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C105B8331827571D003EBF2B /* MCOptionPricerTests.m */; };
+		C105B8451827581B003EBF2B /* APFinancialData.m in Sources */ = {isa = PBXBuildFile; fileRef = C105B8401827581B003EBF2B /* APFinancialData.m */; };
+		C105B8461827581B003EBF2B /* APYahooDataPuller.m in Sources */ = {isa = PBXBuildFile; fileRef = C105B8421827581B003EBF2B /* APYahooDataPuller.m */; };
+		C105B8471827581B003EBF2B /* NSDateFormatterExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = C105B8441827581B003EBF2B /* NSDateFormatterExtensions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,12 @@
 		C105B82F1827571D003EBF2B /* MCOptionPricerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MCOptionPricerTests-Info.plist"; sourceTree = "<group>"; };
 		C105B8311827571D003EBF2B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C105B8331827571D003EBF2B /* MCOptionPricerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MCOptionPricerTests.m; sourceTree = "<group>"; };
+		C105B83F1827581B003EBF2B /* APFinancialData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APFinancialData.h; sourceTree = "<group>"; };
+		C105B8401827581B003EBF2B /* APFinancialData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APFinancialData.m; sourceTree = "<group>"; };
+		C105B8411827581B003EBF2B /* APYahooDataPuller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APYahooDataPuller.h; sourceTree = "<group>"; };
+		C105B8421827581B003EBF2B /* APYahooDataPuller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APYahooDataPuller.m; sourceTree = "<group>"; };
+		C105B8431827581B003EBF2B /* NSDateFormatterExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateFormatterExtensions.h; sourceTree = "<group>"; };
+		C105B8441827581B003EBF2B /* NSDateFormatterExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateFormatterExtensions.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +121,7 @@
 		C105B80E1827571D003EBF2B /* MCOptionPricer */ = {
 			isa = PBXGroup;
 			children = (
+				C105B84818275823003EBF2B /* Data Collection */,
 				C105B8171827571D003EBF2B /* MCAppDelegate.h */,
 				C105B8181827571D003EBF2B /* MCAppDelegate.m */,
 				C105B81A1827571D003EBF2B /* Main.storyboard */,
@@ -150,6 +160,19 @@
 				C105B8301827571D003EBF2B /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C105B84818275823003EBF2B /* Data Collection */ = {
+			isa = PBXGroup;
+			children = (
+				C105B83F1827581B003EBF2B /* APFinancialData.h */,
+				C105B8401827581B003EBF2B /* APFinancialData.m */,
+				C105B8411827581B003EBF2B /* APYahooDataPuller.h */,
+				C105B8421827581B003EBF2B /* APYahooDataPuller.m */,
+				C105B8431827581B003EBF2B /* NSDateFormatterExtensions.h */,
+				C105B8441827581B003EBF2B /* NSDateFormatterExtensions.m */,
+			);
+			name = "Data Collection";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,9 +273,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C105B8451827581B003EBF2B /* APFinancialData.m in Sources */,
+				C105B8461827581B003EBF2B /* APYahooDataPuller.m in Sources */,
 				C105B8191827571D003EBF2B /* MCAppDelegate.m in Sources */,
 				C105B81F1827571D003EBF2B /* MCViewController.m in Sources */,
 				C105B8151827571D003EBF2B /* main.m in Sources */,
+				C105B8471827581B003EBF2B /* NSDateFormatterExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
