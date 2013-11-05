@@ -25,11 +25,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    // Data puller
-    NSDate *start         = [NSDate dateWithTimeIntervalSinceNow:-60.0 * 60.0 * 24.0 * 7.0 * 12.0]; // 12 weeks ago
-    NSDate *end           = [NSDate date];
-    self.dataPuller = [[APYahooDataPuller alloc] initWithTargetSymbol:@"AAPL" targetStartDate:start targetEndDate:end];
-    
     [self.invalidTickerLabel setText:@""];
 }
 
@@ -95,6 +90,74 @@
     }
     return NO;
 }
+
+- (float)computeVolatilityParameter:(NSArray *)financialData forNumberOfDays:(int)days
+{
+    NSArray *closingPrices = [self retrieveClosingPrices:financialData];
+    NSArray *dailyReturns = [self retrieveDailyReturns:closingPrices];
+    float volatility = [[self standardDeviationOf:dailyReturns] floatValue];
+    NSLog(@"Volatility: %f", volatility);
+    return volatility;
+}
+
+- (NSArray *)retrieveClosingPrices:(NSArray *)financialData {
+    NSMutableArray *closingPrices = [[NSMutableArray alloc] init];
+    for (int i=0; i<[financialData count]; i++) {
+        NSDictionary *dailyData = financialData[i];
+        float close = [[dailyData objectForKey:@"close"] floatValue];
+        NSNumber *roundedClose = [NSNumber numberWithFloat:[self customRounding:close]];
+        [closingPrices addObject:roundedClose];
+    }
+    return closingPrices;
+}
+
+- (NSArray *)retrieveDailyReturns:(NSArray *)closingPrices
+{
+    NSMutableArray *dailyReturns = [[NSMutableArray alloc] init];
+    for (int i=0; i<([closingPrices count]-1); i++) {
+        float currentPrice = [closingPrices[i] floatValue];
+        float prevPrice = [closingPrices[i+1] floatValue];
+        NSNumber *dailyReturn = [NSNumber numberWithFloat:((currentPrice - prevPrice) / prevPrice)];
+        [dailyReturns addObject:dailyReturn];
+    }
+    NSLog(@"daily returns: %@", dailyReturns);
+    return dailyReturns;
+}
+
+- (NSNumber *)meanOf:(NSArray *)array
+{
+    double runningTotal = 0.0;
+    
+    for(NSNumber *number in array)
+    {
+        runningTotal += [number doubleValue];
+    }
+    
+    return [NSNumber numberWithDouble:(runningTotal / [array count])];
+}
+
+- (NSNumber *)standardDeviationOf:(NSArray *)array
+{
+    if(![array count]) return nil;
+    
+    double mean = [[self meanOf:array] doubleValue];
+    double sumOfSquaredDifferences = 0.0;
+    
+    for(NSNumber *number in array)
+    {
+        double valueOfNumber = [number doubleValue];
+        double difference = valueOfNumber - mean;
+        sumOfSquaredDifferences += difference * difference;
+    }
+    
+    return [NSNumber numberWithDouble:sqrt(sumOfSquaredDifferences / [array count])];
+}
+
+- (float) customRounding:(float)value {
+    const float roundingValue = 0.01;
+    int mulitpler = floor(value / roundingValue);
+    return mulitpler * roundingValue;
+}
     
 // Checks if a string contains any non whitespace characters
 - (BOOL)containsNonWhitespaceCharacters:(NSString *)string
@@ -106,9 +169,18 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([[segue identifier] isEqualToString:@"inputOption"]) {
+        NSString *formattedTicker = [self.tickerString uppercaseString];
         OptionPickerVC *opvc = (OptionPickerVC *)[segue destinationViewController];
-        opvc.ticker = [self.tickerString uppercaseString];
+        opvc.ticker = formattedTicker;
         opvc.spotPrice = self.spotPrice;
+        
+        // Data puller
+        NSDate *start         = [NSDate dateWithTimeIntervalSinceNow:-60.0 * 60.0 * 24.0 * 7.0 * 12.0]; // 13 weeks ago
+        NSDate *end           = [NSDate date];
+        self.dataPuller = [[APYahooDataPuller alloc] initWithTargetSymbol:formattedTicker targetStartDate:start targetEndDate:end];
+        opvc.dataPuller = self.dataPuller;
+        
+        NSLog(@"Data Puller: %@", self.dataPuller.financialData);
     }
 }
 

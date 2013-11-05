@@ -18,6 +18,7 @@
 
 @property (nonatomic) int selectedDay;
 @property (nonatomic) float selectedStrike;
+@property (nonatomic) float volatilityParameter;
 
 @end
 
@@ -61,7 +62,7 @@
         [self.days addObject:[NSNumber numberWithInt:i]];
     }
     
-    int spotPriceInt = [self.spotPrice integerValue];
+    int spotPriceInt = [self.spotPrice intValue];
     float strikeSpread;
     if (spotPriceInt > 100) {
         strikeSpread = 2;
@@ -127,6 +128,15 @@
         self.selectedStrike = [[self.strikes objectAtIndex:row] floatValue];
         NSLog(@"Selected Strike: %f", self.selectedStrike);
     }
+}
+
+- (IBAction)calculatePrice:(id)sender {
+//    NSLog(@"data puller: %@", self.dataPuller);
+//    NSLog(@"financial data: %@", self.dataPuller.financialData);
+    MCViewController *mcvc = (MCViewController *)[self presentingViewController];
+    self.volatilityParameter = [mcvc computeVolatilityParameter:self.dataPuller.financialData forNumberOfDays:1];
+//    
+//    NSLog(@"Volatility Parameter: %f", self.volatilityParameter);
 }
 
 @end

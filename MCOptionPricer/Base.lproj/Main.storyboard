@@ -155,6 +155,9 @@
                                 <state key="normal" title="Calculate Price">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="calculatePrice:" destination="ivk-X6-ZvT" eventType="touchUpInside" id="mUj-Y8-eJx"/>
+                                </connections>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yYe-WP-ZvU">
                                 <rect key="frame" x="20" y="432" width="75" height="29"/>

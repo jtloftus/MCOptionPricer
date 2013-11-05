@@ -12,4 +12,6 @@
 
 @interface MCViewController : UIViewController
 
+- (float)computeVolatilityParameter:(NSArray *)financialData forNumberOfDays:(int)days;
+
 @end
