@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "APYahooDataPuller.h"
-#import "MCViewController.h"
+#import <math.h>
+#import "MCNode.h"
+
+#define R .001
+#define D .000011106
 
 @interface OptionPickerVC : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (strong, nonatomic) NSString *ticker;
 @property (strong, nonatomic) NSString *spotPrice;
-@property (strong, nonatomic) APYahooDataPuller *dataPuller;
+@property (nonatomic) float volatilityParameter;
 
 @end

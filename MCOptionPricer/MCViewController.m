@@ -16,6 +16,8 @@
 @property (strong, nonatomic) NSString *tickerString;
 @property (strong, nonatomic) NSString *spotPrice;
 
+@property (strong, nonatomic) UITextField *activeField;
+
 @end
 
 @implementation MCViewController
@@ -26,10 +28,11 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     [self.invalidTickerLabel setText:@""];
+    self.tickerTextField.delegate = self;
 }
 
 
-- (IBAction)printData:(id)sender {
+- (void)checkTicker:(id)sender {
     //NSLog(@"%@", [self.dataPuller.financialData[0] objectForKey:@"close"]);
     //NSLog(@"%@", self.dataPuller.financialData);
     if ([self containsNonWhitespaceCharacters:self.tickerTextField.text]) {
@@ -86,6 +89,7 @@
     NSDictionary *quotes = [self fetchQuotesFor:tickers];
     if ([quotes valueForKey:[ticker uppercaseString]] != [NSNull null]) {
         self.spotPrice = [quotes valueForKey:[ticker uppercaseString]];
+        [self.invalidTickerLabel setText:@""];
         return YES;
     }
     return NO;
@@ -95,9 +99,8 @@
 {
     NSArray *closingPrices = [self retrieveClosingPrices:financialData];
     NSArray *dailyReturns = [self retrieveDailyReturns:closingPrices];
-    float volatility = [[self standardDeviationOf:dailyReturns] floatValue];
-    NSLog(@"Volatility: %f", volatility);
-    return volatility;
+    float dayVolatility = [[self standardDeviationOf:dailyReturns] floatValue];
+    return dayVolatility * sqrt(days);
 }
 
 - (NSArray *)retrieveClosingPrices:(NSArray *)financialData {
@@ -120,7 +123,6 @@
         NSNumber *dailyReturn = [NSNumber numberWithFloat:((currentPrice - prevPrice) / prevPrice)];
         [dailyReturns addObject:dailyReturn];
     }
-    NSLog(@"daily returns: %@", dailyReturns);
     return dailyReturns;
 }
 
@@ -178,10 +180,33 @@
         NSDate *start         = [NSDate dateWithTimeIntervalSinceNow:-60.0 * 60.0 * 24.0 * 7.0 * 12.0]; // 13 weeks ago
         NSDate *end           = [NSDate date];
         self.dataPuller = [[APYahooDataPuller alloc] initWithTargetSymbol:formattedTicker targetStartDate:start targetEndDate:end];
-        opvc.dataPuller = self.dataPuller;
         
-        NSLog(@"Data Puller: %@", self.dataPuller.financialData);
+        opvc.volatilityParameter = [self computeVolatilityParameter:self.dataPuller.financialData forNumberOfDays:1];
     }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.activeField = textField;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.activeField = nil;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    // Hide the keyboard
+    [self hideKeyboard];
+    
+    [self checkTicker:nil];
+    
+    return YES;
+}
+
+- (void)hideKeyboard {
+    [self.activeField resignFirstResponder];
 }
 
 - (IBAction)done:(UIStoryboardSegue *)segue

@@ -16,16 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dxd-N9-rxc">
-                                <rect key="frame" x="20" y="170" width="79" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Test Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="printData:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="QnC-P4-fMN"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter a Ticker:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bI0-jr-cz2">
                                 <rect key="frame" x="20" y="74" width="111" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -66,13 +56,11 @@
                         <constraints>
                             <constraint firstItem="obA-Y0-uh4" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="20" symbolic="YES" id="6c0-EW-Dfk"/>
                             <constraint firstItem="PK9-Ao-ecZ" firstAttribute="top" secondItem="gho-Vj-QoL" secondAttribute="bottom" constant="8" symbolic="YES" id="Ba4-Sy-6UE"/>
-                            <constraint firstItem="Dxd-N9-rxc" firstAttribute="top" secondItem="PK9-Ao-ecZ" secondAttribute="bottom" constant="8" symbolic="YES" id="E4G-Rr-rGc"/>
                             <constraint firstAttribute="trailing" secondItem="gho-Vj-QoL" secondAttribute="trailing" constant="20" symbolic="YES" id="EBA-JZ-i1p"/>
                             <constraint firstItem="gho-Vj-QoL" firstAttribute="top" secondItem="bI0-jr-cz2" secondAttribute="bottom" constant="8" symbolic="YES" id="Rdd-7s-lQ0"/>
                             <constraint firstItem="bI0-jr-cz2" firstAttribute="top" secondItem="wfW-rX-3UH" secondAttribute="bottom" constant="8" symbolic="YES" id="ULa-PJ-PJr"/>
                             <constraint firstItem="gho-Vj-QoL" firstAttribute="centerX" secondItem="wfW-rX-3UH" secondAttribute="centerX" id="WOB-JY-uoY"/>
                             <constraint firstItem="gho-Vj-QoL" firstAttribute="leading" secondItem="PK9-Ao-ecZ" secondAttribute="leading" id="WpC-Vc-f6H"/>
-                            <constraint firstItem="Dxd-N9-rxc" firstAttribute="leading" secondItem="PK9-Ao-ecZ" secondAttribute="leading" id="ayI-wb-JxR"/>
                             <constraint firstItem="obA-Y0-uh4" firstAttribute="centerX" secondItem="wfW-rX-3UH" secondAttribute="centerX" id="dY9-mE-XIw"/>
                             <constraint firstItem="gho-Vj-QoL" firstAttribute="trailing" secondItem="PK9-Ao-ecZ" secondAttribute="trailing" id="iIe-Py-bYi"/>
                             <constraint firstItem="bI0-jr-cz2" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" symbolic="YES" id="p0G-dB-BTb"/>
@@ -149,8 +137,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poE-pL-dBl">
-                                <rect key="frame" x="196" y="430" width="104" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="poE-pL-dBl">
+                                <rect key="frame" x="196" y="431" width="104" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Calculate Price">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -159,7 +147,7 @@
                                     <action selector="calculatePrice:" destination="ivk-X6-ZvT" eventType="touchUpInside" id="mUj-Y8-eJx"/>
                                 </connections>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yYe-WP-ZvU">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yYe-WP-ZvU">
                                 <rect key="frame" x="20" y="432" width="75" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
@@ -167,6 +155,10 @@
                                     <segment title="Put"/>
                                 </segments>
                             </segmentedControl>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2OO-Gt-lgP">
+                                <rect key="frame" x="150" y="436" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -175,15 +167,21 @@
                             <constraint firstItem="Bhk-Qv-Xi8" firstAttribute="leading" secondItem="9dR-QE-wyI" secondAttribute="leading" id="CUg-gZ-SlS"/>
                             <constraint firstItem="8Af-8i-yRh" firstAttribute="leading" secondItem="Bhk-Qv-Xi8" secondAttribute="leading" id="DpX-hX-Kj0"/>
                             <constraint firstItem="fUT-Ce-9U9" firstAttribute="centerX" secondItem="Bhk-Qv-Xi8" secondAttribute="centerX" id="F8o-k2-P7G"/>
+                            <constraint firstItem="yYe-WP-ZvU" firstAttribute="leading" secondItem="uOk-xa-9xt" secondAttribute="leading" id="FT1-jr-yJW"/>
+                            <constraint firstItem="CoF-om-T8j" firstAttribute="top" secondItem="poE-pL-dBl" secondAttribute="bottom" constant="19" id="Qtj-RS-jrn"/>
                             <constraint firstItem="8Af-8i-yRh" firstAttribute="trailing" secondItem="jHv-RP-5gA" secondAttribute="trailing" id="W7I-Xe-MOw"/>
+                            <constraint firstItem="poE-pL-dBl" firstAttribute="leading" secondItem="2OO-Gt-lgP" secondAttribute="trailing" constant="26" id="WpB-Ao-J3N"/>
                             <constraint firstItem="8Af-8i-yRh" firstAttribute="top" secondItem="Bhk-Qv-Xi8" secondAttribute="bottom" constant="8" symbolic="YES" id="cn1-II-005"/>
+                            <constraint firstItem="poE-pL-dBl" firstAttribute="centerY" secondItem="2OO-Gt-lgP" secondAttribute="centerY" id="fCb-TD-ljD"/>
                             <constraint firstItem="j6C-QR-u7x" firstAttribute="leading" secondItem="uOk-xa-9xt" secondAttribute="leading" id="iFf-LU-D8t"/>
+                            <constraint firstItem="poE-pL-dBl" firstAttribute="centerY" secondItem="yYe-WP-ZvU" secondAttribute="centerY" id="in4-a2-9BO"/>
                             <constraint firstItem="9dR-QE-wyI" firstAttribute="top" secondItem="PfV-ei-MG4" secondAttribute="top" constant="20" symbolic="YES" id="nCR-MM-Jd0"/>
                             <constraint firstItem="uOk-xa-9xt" firstAttribute="leading" secondItem="8Af-8i-yRh" secondAttribute="leading" id="nWN-jR-h8q"/>
                             <constraint firstItem="j6C-QR-u7x" firstAttribute="trailing" secondItem="jHv-RP-5gA" secondAttribute="trailing" id="nWT-0B-5Aw"/>
                             <constraint firstItem="Bhk-Qv-Xi8" firstAttribute="top" secondItem="9dR-QE-wyI" secondAttribute="bottom" constant="8" symbolic="YES" id="oaD-1n-UJq"/>
                             <constraint firstItem="uOk-xa-9xt" firstAttribute="baseline" secondItem="jHv-RP-5gA" secondAttribute="baseline" id="rCB-zo-u0j"/>
                             <constraint firstItem="9dR-QE-wyI" firstAttribute="baseline" secondItem="fUT-Ce-9U9" secondAttribute="baseline" id="rFG-wu-Ca0"/>
+                            <constraint firstItem="poE-pL-dBl" firstAttribute="trailing" secondItem="jHv-RP-5gA" secondAttribute="trailing" id="rIa-uf-le3"/>
                             <constraint firstItem="j6C-QR-u7x" firstAttribute="top" secondItem="8Af-8i-yRh" secondAttribute="bottom" constant="8" symbolic="YES" id="sAD-gV-fXU"/>
                             <constraint firstItem="j6C-QR-u7x" firstAttribute="bottom" secondItem="jHv-RP-5gA" secondAttribute="bottom" id="u5P-qa-KWE"/>
                             <constraint firstAttribute="trailing" secondItem="Bhk-Qv-Xi8" secondAttribute="trailing" constant="20" symbolic="YES" id="wDc-El-gSB"/>
@@ -191,7 +189,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="6lR-YH-G5k"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="2OO-Gt-lgP" id="nKn-Q5-udo"/>
                         <outlet property="optionPickerView" destination="j6C-QR-u7x" id="ZBW-eM-Bfr"/>
+                        <outlet property="segmentedControl" destination="yYe-WP-ZvU" id="7P7-dg-CEi"/>
                         <outlet property="spotPriceLabel" destination="8Af-8i-yRh" id="EYb-v4-y8x"/>
                         <outlet property="tickerLabel" destination="Bhk-Qv-Xi8" id="cuh-TP-TVa"/>
                     </connections>
