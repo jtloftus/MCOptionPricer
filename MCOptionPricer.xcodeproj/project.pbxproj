@@ -233,6 +233,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Joe Loftus";
 				TargetAttributes = {
+					C105B8041827571D003EBF2B = {
+						DevelopmentTeam = 54ANV7A5PC;
+					};
 					C105B8251827571D003EBF2B = {
 						TestTargetID = C105B8041827571D003EBF2B;
 					};
@@ -417,10 +420,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MCOptionPricer/MCOptionPricer-Prefix.pch";
 				INFOPLIST_FILE = "MCOptionPricer/MCOptionPricer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -430,10 +436,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MCOptionPricer/MCOptionPricer-Prefix.pch";
 				INFOPLIST_FILE = "MCOptionPricer/MCOptionPricer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -95,11 +95,15 @@
     return NO;
 }
 
+// Computing the Volatility Parameter according to the Broadie Method for a given number of days
 - (float)computeVolatilityParameter:(NSArray *)financialData forNumberOfDays:(int)days
 {
+    // Get the closing prices and daily returns
     NSArray *closingPrices = [self retrieveClosingPrices:financialData];
     NSArray *dailyReturns = [self retrieveDailyReturns:closingPrices];
+    // Get the standard deviation of the daily returns for daily volatility parameter
     float dayVolatility = [[self standardDeviationOf:dailyReturns] floatValue];
+    // Return the day Volatility times the square root of number of days
     return dayVolatility * sqrt(days);
 }
 

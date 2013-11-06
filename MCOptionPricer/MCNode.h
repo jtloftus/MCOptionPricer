@@ -10,13 +10,13 @@
 
 @interface MCNode : NSObject
 
-@property (nonatomic) float similatedPrice;
-@property (nonatomic) int day;
+@property (nonatomic) float similatedPrice; // Simulated Price at this node
+@property (nonatomic) int day;  // The time in days of the node
 @property (strong, nonatomic) MCNode *parent;
-@property (strong, nonatomic) NSMutableArray *branches;
+@property (strong, nonatomic) NSMutableArray *branches; // The simulated nodes after this node
 
-@property (nonatomic) float highEstimate;
-@property (nonatomic) float lowEstimate;
+@property (nonatomic) float highEstimate; // Broadie High Estimate Value of the Node
+@property (nonatomic) float lowEstimate; // Broadie Low Estimate Value of the Node
 
 - (MCNode *)initWithPrice:(float)price andDay:(int)day;
 
