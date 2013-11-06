@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
+@property (strong, nonatomic) IBOutlet UILabel *highEstimate;
+@property (strong, nonatomic) IBOutlet UILabel *lowEstimate;
 
 @property (strong, nonatomic) NSMutableArray *days;
 @property (strong, nonatomic) NSMutableArray *strikes;
@@ -196,7 +198,7 @@
     
     // How many branches we create
     if (self.selectedDay <= 1) {
-        B = 1000000;
+        B = 15000;
     }
     else if (self.selectedDay <= 2) {
         B = 1000;
@@ -209,6 +211,15 @@
     }
     else if (self.selectedDay <= 5) {
         B = 15;
+    }
+    else if (self.selectedDay <= 6) {
+        B = 10;
+    }
+    else if (self.selectedDay <= 7) {
+        B = 7;
+    }
+    else if (self.selectedDay <= 7) {
+        B = 5;
     }
     else if (self.selectedDay <= 10) {
         B = 4;
@@ -322,21 +333,13 @@
         }
         
         MCNode *root = [self generateTreeWithT:days];
+        
         [self calculateOptionPriceWithRoot:root withT:days];
-        
-//        for (MCNode *branch in root.branches) {
-//            for (MCNode *subbranch in branch.branches) {
-//                NSLog(@"%f", subbranch.similatedPrice);
-//            }
-//        }
-//        
-//        NSLog(@"%@", root.branches);
-        
-        NSLog(@"HIGH: %f", root.highEstimate);
-        NSLog(@"LOW: %f", root.lowEstimate);
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.activityIndicator stopAnimating];
+            [self.highEstimate setText:[NSString stringWithFormat:@"%0.3f", root.highEstimate]];
+            [self.lowEstimate setText:[NSString stringWithFormat:@"%0.3f", root.lowEstimate]];
         });
     });
 }
