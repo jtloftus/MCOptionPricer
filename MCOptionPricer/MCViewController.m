@@ -220,21 +220,24 @@
     self.activeField = textField;
 }
 
-//- (void)textFieldDidEndEditing:(UITextField *)textField
-//{
-//    [self.activeField resignFirstResponder];
-//    self.activeField = nil;
-//}
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.activeField = nil;
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [self.activeField resignFirstResponder];
-    self.activeField = nil;
+    // Hide the keyboard
+    [self hideKeyboard];
+    
     [self checkTicker];
     
     return YES;
 }
 
+- (void)hideKeyboard {
+    [self.activeField resignFirstResponder];
+}
 
 - (IBAction)done:(UIStoryboardSegue *)segue
 {
