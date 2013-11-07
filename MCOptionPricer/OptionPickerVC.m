@@ -91,17 +91,17 @@
         strikeSpread = spotPriceInt / 50.0;
     }
     
-    
     float currentStrike = spotPriceInt - 5 * strikeSpread;
+    float initialDifference = [self.spotPrice floatValue] - currentStrike;
     
     self.selectedStrike = currentStrike;
     self.selectedDay = 1;
     
-    for (int i=0; i<11; i++) {
+    while ((currentStrike - [self.spotPrice floatValue]) <= initialDifference) {
         [self.strikes addObject:[NSNumber numberWithFloat:currentStrike]];
         currentStrike += strikeSpread;
     }
-    
+        
     self.activityIndicator.hidesWhenStopped = YES;
     
     self.optionPickerView.delegate = self;
