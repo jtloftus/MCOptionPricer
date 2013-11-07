@@ -12,6 +12,10 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *tickerTextField;
 @property (weak, nonatomic) IBOutlet UILabel *invalidTickerLabel;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (strong, nonatomic) IBOutlet UITextView *disclaimerTextView;
+
+
 @property (strong, nonatomic) APYahooDataPuller *dataPuller;
 @property (strong, nonatomic) NSString *tickerString;
 @property (strong, nonatomic) NSString *spotPrice;
@@ -27,14 +31,17 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    self.disclaimerTextView.editable = NO;
+    self.disclaimerTextView.scrollEnabled = NO;
+    
+    self.activityIndicator.hidesWhenStopped = YES;
+    
     [self.invalidTickerLabel setText:@""];
     self.tickerTextField.delegate = self;
 }
 
 
-- (void)checkTicker:(id)sender {
-    //NSLog(@"%@", [self.dataPuller.financialData[0] objectForKey:@"close"]);
-    //NSLog(@"%@", self.dataPuller.financialData);
+- (void)checkTicker {
     if ([self containsNonWhitespaceCharacters:self.tickerTextField.text]) {
         // Trim the leading and trailing whitespace from the comment
         NSString *trimmedTicker = [self.tickerTextField.text stringByTrimmingCharactersInSet:
@@ -45,7 +52,13 @@
         }
         else {
             self.tickerString = trimmedTicker;
-            [self performSegueWithIdentifier:@"inputOption" sender:self];
+            
+            // Data puller
+            NSDate *start         = [NSDate dateWithTimeIntervalSinceNow:-60.0 * 60.0 * 24.0 * 7.0 * 12.0]; // 13 weeks ago
+            NSDate *end           = [NSDate date];
+            self.dataPuller = [[APYahooDataPuller alloc] initWithTargetSymbol:trimmedTicker targetStartDate:start targetEndDate:end];
+            [self.dataPuller setDelegate:self];
+            [self.activityIndicator startAnimating];
         }
     }
     else {
@@ -53,11 +66,18 @@
     }
 }
 
+- (void)dataPullerDidFinishFetch:(APYahooDataPuller *)dp {
+    [self.activityIndicator stopAnimating];
+    [self performSegueWithIdentifier:@"inputOption" sender:self];
+}
+
 #define QUOTE_QUERY_PREFIX @"http://query.yahooapis.com/v1/public/yql?q=select%20symbol%2C%20BidRealtime%20from%20yahoo.finance.quotes%20where%20symbol%20in%20("
 #define QUOTE_QUERY_SUFFIX @")&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback="
 
 - (NSDictionary *)fetchQuotesFor:(NSArray *)tickers
 {
+    [self.activityIndicator startAnimating];
+    
     NSMutableDictionary *quotes;
     if (tickers && [tickers count] > 0) {
         NSMutableString *query = [[NSMutableString alloc] init];
@@ -80,16 +100,27 @@
             [quotes setValue:[quoteEntry valueForKey:@"BidRealtime"] forKey:[quoteEntry valueForKey:@"symbol"]];
         }
     }
+    [self.activityIndicator stopAnimating];
+    
     return quotes;
 }
 
 - (BOOL)isValidTicker:(NSString *)ticker
 {
+    // Make sure the ticker only contains alpha Characters
+    NSCharacterSet *alphaSet = [NSCharacterSet alphanumericCharacterSet];
+    if (![[ticker stringByTrimmingCharactersInSet:alphaSet] isEqualToString:@""]) {
+        return NO;
+    }
+    
+    // Make sure this ticker returns a spot price
+    // If it does -- then it's a valid ticker
     NSArray *tickers = @[ticker, @"dummy"];
     NSDictionary *quotes = [self fetchQuotesFor:tickers];
     if ([quotes valueForKey:[ticker uppercaseString]] != [NSNull null]) {
         self.spotPrice = [quotes valueForKey:[ticker uppercaseString]];
         [self.invalidTickerLabel setText:@""];
+        NSLog(@"Valid Ticker!");
         return YES;
     }
     return NO;
@@ -180,11 +211,6 @@
         opvc.ticker = formattedTicker;
         opvc.spotPrice = self.spotPrice;
         
-        // Data puller
-        NSDate *start         = [NSDate dateWithTimeIntervalSinceNow:-60.0 * 60.0 * 24.0 * 7.0 * 12.0]; // 13 weeks ago
-        NSDate *end           = [NSDate date];
-        self.dataPuller = [[APYahooDataPuller alloc] initWithTargetSymbol:formattedTicker targetStartDate:start targetEndDate:end];
-        
         opvc.volatilityParameter = [self computeVolatilityParameter:self.dataPuller.financialData forNumberOfDays:1];
     }
 }
@@ -204,7 +230,7 @@
     // Hide the keyboard
     [self hideKeyboard];
     
-    [self checkTicker:nil];
+    [self checkTicker];
     
     return YES;
 }

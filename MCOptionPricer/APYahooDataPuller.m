@@ -192,6 +192,9 @@ NSTimeInterval timeIntervalForNumberOfWeeks(float numberOfWeeks)
     if ( delegate && [delegate respondsToSelector:@selector(dataPullerDidFinishFetch:)] ) {
         [delegate performSelector:@selector(dataPullerDidFinishFetch:) withObject:self];
     }
+    else {
+        NSLog(@"Doesn't Respond to Selector dataPullerDidFinishFetch");
+    }
 }
 
 #pragma mark -

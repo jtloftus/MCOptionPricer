@@ -2,9 +2,9 @@
 
 @class APYahooDataPuller;
 
-@protocol APYahooDataPullerDelegate
+@protocol APYahooDataPullerDelegate <NSObject>
 
-@optional
+@required
 
 -(void)dataPullerDidFinishFetch:(APYahooDataPuller *)dp;
 

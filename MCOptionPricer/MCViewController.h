@@ -10,7 +10,7 @@
 #import "APYahooDataPuller.h"
 #import "OptionPickerVC.h"
 
-@interface MCViewController : UIViewController <UITextFieldDelegate>
+@interface MCViewController : UIViewController <UITextFieldDelegate, APYahooDataPullerDelegate>
 
 - (float)computeVolatilityParameter:(NSArray *)financialData forNumberOfDays:(int)days;
 
