@@ -22,7 +22,7 @@
 @property (strong, nonatomic) NSMutableArray *days;
 @property (strong, nonatomic) NSMutableArray *strikes;
 
-@property (nonatomic) int selectedDay;
+@property (nonatomic) float selectedDay;
 @property (nonatomic) float selectedStrike;
 
 @end
@@ -64,10 +64,10 @@
     [self.tickerLabel setText:self.ticker];
     
     for (int i=1; i<=15; i++) {
-        [self.days addObject:[NSNumber numberWithInt:i]];
+        [self.days addObject:[NSNumber numberWithFloat:i]];
     }
     for (int i=20; i<=60; i+=5) {
-        [self.days addObject:[NSNumber numberWithInt:i]];
+        [self.days addObject:[NSNumber numberWithFloat:i]];
     }
     
     int spotPriceInt = [self.spotPrice intValue];
@@ -95,10 +95,10 @@
     float initialDifference = [self.spotPrice floatValue] - currentStrike;
     
     self.selectedStrike = currentStrike;
-    self.selectedDay = 1;
+    self.selectedDay = 1.0;
     
     while ((currentStrike - [self.spotPrice floatValue]) <= initialDifference) {
-        [self.strikes addObject:[NSNumber numberWithFloat:currentStrike]];
+        [self.strikes addObject:[NSNumber numberWithFloat:[self customRounding:currentStrike]]];
         currentStrike += strikeSpread;
     }
         
@@ -109,18 +109,19 @@
 
 }
 
-
 // This function generates a Random price over an interval of days
 // Given the Method described by Broadie
-- (float)generateRandomPrice:(float)prevPrice withT:(int)days
+- (float)generateRandomPrice:(float)prevPrice withT:(float)days
 {
+    float volatilityParameter = self.volatilityParameter * sqrt(days);
+    
     // risk-free rate minus volatility ^ 2 divided by 2
-    double first = R-pow(self.volatilityParameter * sqrt(days), 2)/2;
+    double first = R-pow(volatilityParameter, 2)/2;
     // Generate a Standard Normal Variable
     float randGaus = [self rand_gauss];
     // The second part of the exponent is the volatility parameter, times the number of days times
     // A standard normal variable
-    double second = self.volatilityParameter * days * randGaus;
+    double second = volatilityParameter * sqrt(days) * randGaus;
     double exponent = first * days + second;
     // Return previous price * e ^ exponent
     return prevPrice * pow(M_E, exponent);
@@ -157,17 +158,23 @@
 {
     if (component == 0) {
         if (row<15) {
-            self.selectedDay = row + 1;
+            self.selectedDay = (float)row + 1;
         }
         else {
-            self.selectedDay = 15 + 5 * (row - 14);
+            self.selectedDay = (float)(15 + 5 * (row - 14));
         }
-        NSLog(@"Selected Day: %d", self.selectedDay);
+        NSLog(@"Selected Day: %f", self.selectedDay);
     }
     else {
         self.selectedStrike = [[self.strikes objectAtIndex:row] floatValue];
         NSLog(@"Selected Strike: %f", self.selectedStrike);
     }
+}
+
+- (float) customRounding:(float)value {
+    const float roundingValue = 0.01;
+    int mulitpler = floor(value / roundingValue);
+    return mulitpler * roundingValue;
 }
 
 // *** Method Derived From ***
@@ -202,55 +209,14 @@
 
 - (float)getIntrinsicValueOfNode:(MCNode *)node
 {
-    return [self getIntrinsicValue:node.similatedPrice];
+    return [self getIntrinsicValue:node.simulatedPrice];
 }
 
-- (MCNode *)generateTreeWithT:(int)days {
+- (MCNode *)generateTreeWithT:(float)dayLength {
     // How many days until expiry
     int d = [self selectedDay];
-    int B;
     
-    // How many branches we create
-    if (self.selectedDay <= 1) {
-        B = 15000;
-    }
-    else if (self.selectedDay <= 2) {
-        B = 800;
-    }
-    else if (self.selectedDay <= 3) {
-        B = 100;
-    }
-    else if (self.selectedDay <= 4) {
-        B = 35;
-    }
-    else if (self.selectedDay <= 5) {
-        B = 15;
-    }
-    else if (self.selectedDay <= 6) {
-        B = 10;
-    }
-    else if (self.selectedDay <= 7) {
-        B = 8;
-    }
-    else if (self.selectedDay <= 8) {
-        B = 6;
-    }
-    else if (self.selectedDay <= 10) {
-        B = 4;
-    }
-    else if (self.selectedDay <= 13) {
-        B = 3;
-    }
-    else if (self.selectedDay <= 15) {
-        B = 2;
-    }
-    else if (self.selectedDay <= 50) {
-        B = 4;
-    }
-    else {
-        B = 3;
-    }
-    NSLog(@"B = %d", B);
+    NSLog(@"B = %f", B);
     
     // Add nodes that need branches to this array
     NSMutableArray *nodesNeedingBranches = [[NSMutableArray alloc] init];
@@ -267,12 +233,12 @@
         currentNode = nodesNeedingBranches[0];
         [nodesNeedingBranches removeObjectAtIndex:0];
         // Only add branches if we haven't gotten to expiry date yet
-        if (currentNode.day < d) {
+        if (currentNode.day < (d - .01)) {
             // Add B branches (defined in .h file)
             for (int i=0; i < B; i++) {
                 // Generate a random price and increment the day by one
-                float simPrice = [self generateRandomPrice:currentNode.similatedPrice withT:days];
-                int newDay = currentNode.day + days;
+                float simPrice = [self generateRandomPrice:currentNode.simulatedPrice withT:dayLength];
+                float newDay = currentNode.day + dayLength;
                 // Create the new node with simulated price, updated day, and parent pointer
                 newNode = [[MCNode alloc] initWithPrice:simPrice andDay:newDay];
                 newNode.parent = currentNode;
@@ -282,12 +248,17 @@
                 [nodesNeedingBranches addObject:newNode];
             }
         }
+        else {
+            // This is the case if we're at an end node.
+            // Don't actually want to do anything. Just included this for debugging
+            NSLog(@"Simulated Price: %f", currentNode.simulatedPrice);
+        }
     }
     return root;
 }
 
 // This calculates the high estimate of a node given the Broadie Method
-- (float)getHighEstimate:(MCNode *)node withT:(int)days {
+- (float)getHighEstimate:(MCNode *)node withT:(float)days {
     float expectedContinuingValue = 0.0;
     // Sum up the ensuing node's high values
     for (MCNode *branch in node.branches) {
@@ -298,7 +269,7 @@
 }
 
 // This calculates the low estimate of a node given the Broadie Method
-- (float)getLowEstimate:(MCNode *)node withT:(int)days {
+- (float)getLowEstimate:(MCNode *)node withT:(float)days {
     float expectedContinuingValue = 0.0;
     // We use one node as the value and the others to determine if we excercise
     for (MCNode *branch1 in node.branches) {
@@ -324,7 +295,7 @@
 }
 
 // Recursively Computes the value of an option using the Broadie Method
-- (void)calculateOptionPriceWithRoot:(MCNode *)root withT:(int)days{
+- (void)calculateOptionPriceWithRoot:(MCNode *)root withT:(float)days{
     // Find the intrinsic value of the option
     float intrinsicValue = [self getIntrinsicValueOfNode:root];
     // If we're at one of the terminal nodes, the high and low estimate is just
@@ -353,19 +324,12 @@
             [self.activityIndicator startAnimating];
             
         });
-        int days;
         
-        if (self.selectedDay < 20) {
-            days = 1;
-        }
+        float intervalLength = self.selectedDay / intervals;
         
-        else {
-            days = 5;
-        }
+        MCNode *root = [self generateTreeWithT:intervalLength];
         
-        MCNode *root = [self generateTreeWithT:days];
-        
-        [self calculateOptionPriceWithRoot:root withT:days];
+        [self calculateOptionPriceWithRoot:root withT:intervals];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.activityIndicator stopAnimating];
@@ -373,6 +337,10 @@
             [self.lowEstimate setText:[NSString stringWithFormat:@"%0.3f", root.lowEstimate]];
         });
     });
+}
+
+- (BOOL)shouldAutorotate {
+    return NO;
 }
 
 @end

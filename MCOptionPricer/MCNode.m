@@ -10,10 +10,10 @@
 
 @implementation MCNode
 
-- (MCNode *)initWithPrice:(float)price andDay:(int)day {
+- (MCNode *)initWithPrice:(float)price andDay:(float)day {
     self = [super init];
     if (self) {
-        self.similatedPrice = price;
+        self.simulatedPrice = price;
         self.day = day;
     }
     return self;

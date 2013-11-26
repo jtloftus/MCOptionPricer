@@ -12,6 +12,4 @@
 
 @interface MCViewController : UIViewController <UITextFieldDelegate, APYahooDataPullerDelegate>
 
-- (float)computeVolatilityParameter:(NSArray *)financialData forNumberOfDays:(int)days;
-
 @end
