@@ -508,6 +508,7 @@
 				C105B8391827571D003EBF2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C105B83A1827571D003EBF2B /* Build configuration list for PBXNativeTarget "MCOptionPricerTests" */ = {
 			isa = XCConfigurationList;
@@ -516,6 +517,7 @@
 				C105B83C1827571D003EBF2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

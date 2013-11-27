@@ -248,11 +248,6 @@
                 [nodesNeedingBranches addObject:newNode];
             }
         }
-        else {
-            // This is the case if we're at an end node.
-            // Don't actually want to do anything. Just included this for debugging
-            NSLog(@"Simulated Price: %f", currentNode.simulatedPrice);
-        }
     }
     return root;
 }
