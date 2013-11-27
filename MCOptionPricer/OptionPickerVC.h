@@ -13,7 +13,7 @@
 #define R .001
 #define D .000011106
 #define B 3.0
-#define intervals 11.0
+#define intervals 13.0
 
 @interface OptionPickerVC : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
